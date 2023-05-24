@@ -20,8 +20,11 @@ import axiosInstance from "utils/axios";
 import "../src/styles/index.css";
 import { ToastContainer } from "react-toastify";
 import RouteGuard from "layouts/RouteGuard/RouteGuard";
+import { Typography } from "antd";
 
 const API_URL = process.env.NEXT_PUBLIC_BASE_URL as string;
+
+const { Title } = Typography;
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   noLayout?: boolean;
@@ -40,7 +43,12 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
     return (
       <ThemedLayoutV2
         Header={() => <Header sticky />}
-        Sider={() => <ThemedSiderV2 fixed />}
+        Sider={() => (
+          <ThemedSiderV2
+            fixed
+            Title={() => <Title level={5}>Kendramotion</Title>}
+          />
+        )}
       >
         <Component {...pageProps} />
       </ThemedLayoutV2>
