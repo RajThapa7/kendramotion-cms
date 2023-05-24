@@ -1,7 +1,14 @@
 import React, { useMemo } from "react";
 import { IResourceComponentsProps, useShow } from "@refinedev/core";
-import { Show, TextField, UrlField, NumberField } from "@refinedev/antd";
+import {
+  Show,
+  TextField,
+  UrlField,
+  NumberField,
+  TagField,
+} from "@refinedev/antd";
 import { Image, Skeleton, Typography } from "antd";
+import { AntdInferencer } from "@refinedev/inferencer/antd";
 
 const { Title } = Typography;
 
@@ -52,8 +59,10 @@ export const MovieShow: React.FC<IResourceComponentsProps> = () => {
       )}
       <Title level={5}>Position</Title>
       <NumberField value={record?.position ?? ""} />
-      <Title level={5}>Artist</Title>
-      <TextField value={record?.artist?.name} />
+      <Title level={5}>Artists</Title>
+      {record?.artists?.map((item: any) => (
+        <TagField value={item?.name} key={item?.name} />
+      ))}
     </Show>
   );
 };

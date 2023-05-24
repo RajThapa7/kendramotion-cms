@@ -6,9 +6,11 @@ import {
   EditButton,
   ShowButton,
   DeleteButton,
+  TagField,
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
 import Link from "next/link";
+import { AntdInferencer } from "@refinedev/inferencer/antd";
 
 export const MovieList: React.FC<IResourceComponentsProps> = () => {
   const { tableProps } = useTable({
@@ -31,7 +33,17 @@ export const MovieList: React.FC<IResourceComponentsProps> = () => {
           )}
         />
         <Table.Column dataIndex="position" title="Position" />
-        <Table.Column dataIndex={["artist", "name"]} title="Artist" />
+        <Table.Column
+          dataIndex="artists"
+          title="Artists"
+          render={(value: any[]) => (
+            <>
+              {value?.map((item) => (
+                <TagField value={item?.name} key={item?.name} />
+              ))}
+            </>
+          )}
+        />
         <Table.Column
           title="Actions"
           dataIndex="actions"

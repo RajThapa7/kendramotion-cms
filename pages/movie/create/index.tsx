@@ -1,7 +1,14 @@
 import React, { useMemo, useState } from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
+import { IResourceComponentsProps, useMany } from "@refinedev/core";
 import { Create, useForm } from "@refinedev/antd";
-import { Form, Image, Input, Skeleton } from "antd";
+import { Form, Image, Input, Select, Skeleton, Space } from "antd";
+
+type Artist = {
+  _id: string;
+  name: string;
+  designation: string;
+  phone: string;
+};
 
 export const MovieCreate: React.FC<IResourceComponentsProps> = () => {
   const [url, setUrl] = useState<string>();
@@ -16,7 +23,14 @@ export const MovieCreate: React.FC<IResourceComponentsProps> = () => {
     return "";
   }, [url]);
 
-  const { formProps, saveButtonProps, queryResult } = useForm();
+  const { formProps, saveButtonProps } = useForm();
+
+  const { data, isLoading } = useMany({
+    resource: "artist-profile",
+    ids: [],
+  });
+
+  const artists = data?.data;
 
   return (
     <Create saveButtonProps={saveButtonProps}>
@@ -80,15 +94,25 @@ export const MovieCreate: React.FC<IResourceComponentsProps> = () => {
           <Input />
         </Form.Item>
         <Form.Item
-          label="Artist"
-          name={["artist"]}
+          label="Artists"
+          name={["artists"]}
           rules={[
             {
               required: true,
             },
           ]}
         >
-          <Input />
+          <Select
+            mode="multiple"
+            style={{ width: "100%" }}
+            placeholder="select artists"
+          >
+            {artists?.map((item) => (
+              <Select.Option value={item._id} label={item.name}>
+                <Space>{item.name}</Space>
+              </Select.Option>
+            ))}
+          </Select>
         </Form.Item>
       </Form>
     </Create>

@@ -5,6 +5,7 @@ import {
   UrlField,
   NumberField,
   BooleanField,
+  TagField,
 } from "@refinedev/antd";
 import { Typography } from "antd";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
@@ -27,10 +28,12 @@ export const ShowVideo: React.FC<IResourceComponentsProps> = () => {
       <UrlField value={record?.url} />
       <Title level={5}>Position</Title>
       <NumberField value={record?.position ?? ""} />
-      <Title level={5}>Artist</Title>
-      <TextField value={record?.artist?.name} />
       <Title level={5}>Latest</Title>
       <BooleanField value={record?.latest} />
+      <Title level={5}>Artists</Title>
+      {record?.artists?.map((item: any) => (
+        <TagField value={item?.name} key={item?.name} />
+      ))}
     </Show>
   );
 };

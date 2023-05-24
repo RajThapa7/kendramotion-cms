@@ -28,7 +28,17 @@ const VideoList: React.FC<IResourceComponentsProps> = () => {
           render={(value: any) => <UrlField value={value} />}
         />
         <Table.Column dataIndex="position" title="Position" />
-        <Table.Column dataIndex={["artist", "name"]} title="Artist" />
+        <Table.Column
+          dataIndex="artists"
+          title="Artists"
+          render={(value: any[]) => (
+            <>
+              {value?.map((item) => (
+                <TagField value={item?.name} key={item?.name} />
+              ))}
+            </>
+          )}
+        />
         <Table.Column
           dataIndex={["latest"]}
           title="Latest"

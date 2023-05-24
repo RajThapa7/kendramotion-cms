@@ -1,13 +1,18 @@
 import React from "react";
-import { IResourceComponentsProps } from "@refinedev/core";
+import { IResourceComponentsProps, useMany } from "@refinedev/core";
 import { Create, useForm } from "@refinedev/antd";
-import { Form, Input } from "antd";
+import { Checkbox, Form, Input, Select, Space } from "antd";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
 export const CreateVideo: React.FC<IResourceComponentsProps> = () => {
   const { formProps, saveButtonProps, queryResult } = useForm();
 
-  return <AntdInferencer />;
+  const { data, isLoading } = useMany({
+    resource: "artist-profile",
+    ids: [],
+  });
+
+  const artists = data?.data;
 
   return (
     <Create saveButtonProps={saveButtonProps}>
@@ -56,16 +61,29 @@ export const CreateVideo: React.FC<IResourceComponentsProps> = () => {
         >
           <Input />
         </Form.Item>
+        <Form.Item label="Latest" valuePropName="checked" name={["latest"]}>
+          <Checkbox>Latest</Checkbox>
+        </Form.Item>
         <Form.Item
-          label="Artist"
-          name={["artist"]}
+          label="Artists"
+          name={["artists"]}
           rules={[
             {
               required: true,
             },
           ]}
         >
-          <Input />
+          <Select
+            mode="multiple"
+            style={{ width: "100%" }}
+            placeholder="select artists"
+          >
+            {artists?.map((item) => (
+              <Select.Option value={item._id} label={item.name}>
+                <Space>{item.name}</Space>
+              </Select.Option>
+            ))}
+          </Select>
         </Form.Item>
       </Form>
     </Create>
