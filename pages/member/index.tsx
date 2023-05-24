@@ -1,5 +1,11 @@
 import { IResourceComponentsProps, BaseRecord } from "@refinedev/core";
-import { useTable, List, EditButton, ShowButton } from "@refinedev/antd";
+import {
+  useTable,
+  List,
+  EditButton,
+  ShowButton,
+  DeleteButton,
+} from "@refinedev/antd";
 import { Table, Space } from "antd";
 
 const MemberList: React.FC<IResourceComponentsProps> = () => {
@@ -20,6 +26,7 @@ const MemberList: React.FC<IResourceComponentsProps> = () => {
             <Space>
               <EditButton hideText size="small" recordItemId={record._id} />
               <ShowButton hideText size="small" recordItemId={record._id} />
+              <DeleteButton hideText size="small" recordItemId={record._id} />
             </Space>
           )}
         />

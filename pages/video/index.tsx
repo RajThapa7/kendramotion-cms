@@ -7,6 +7,7 @@ import {
   UrlField,
   TagField,
   BooleanField,
+  DeleteButton,
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
@@ -40,6 +41,7 @@ const VideoList: React.FC<IResourceComponentsProps> = () => {
             <Space>
               <EditButton hideText size="small" recordItemId={record._id} />
               <ShowButton hideText size="small" recordItemId={record._id} />
+              <DeleteButton hideText size="small" recordItemId={record._id} />
             </Space>
           )}
         />
