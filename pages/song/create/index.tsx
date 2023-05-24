@@ -1,7 +1,7 @@
 import React from "react";
 import { IResourceComponentsProps } from "@refinedev/core";
 import { Create, useForm } from "@refinedev/antd";
-import { Form, Input } from "antd";
+import { Checkbox, Form, Input } from "antd";
 
 export const SongCreate: React.FC<IResourceComponentsProps> = () => {
   const { formProps, saveButtonProps, queryResult } = useForm();
@@ -63,6 +63,9 @@ export const SongCreate: React.FC<IResourceComponentsProps> = () => {
           ]}
         >
           <Input />
+        </Form.Item>
+        <Form.Item label="Latest" valuePropName="checked" name={["latest"]}>
+          <Checkbox>Latest</Checkbox>
         </Form.Item>
       </Form>
     </Create>
