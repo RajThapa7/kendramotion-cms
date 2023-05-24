@@ -78,6 +78,14 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
                   meta: {},
                 },
                 {
+                  name: "video",
+                  list: "/video",
+                  create: "/video/create",
+                  edit: "/video/edit/:id",
+                  show: "/video/show/:id",
+                  meta: {},
+                },
+                {
                   name: "artist-profile",
                   list: "/artist-profile",
                   create: "/artist-profile/create",
@@ -92,6 +100,13 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
                   edit: "/feedback/edit/:id",
                   show: "/feedback/show/:id",
                   meta: {},
+                },
+                {
+                  name: "member",
+                  list: "/member",
+                  create: "/member/create",
+                  edit: "/member/edit/:id",
+                  show: "/member/show/:id",
                 },
               ]}
             >
