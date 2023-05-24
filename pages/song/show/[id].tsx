@@ -1,6 +1,11 @@
-import React from "react";
 import { IResourceComponentsProps, useShow } from "@refinedev/core";
-import { Show, TextField, UrlField, NumberField } from "@refinedev/antd";
+import {
+  Show,
+  TextField,
+  UrlField,
+  NumberField,
+  BooleanField,
+} from "@refinedev/antd";
 import { Typography } from "antd";
 
 const { Title } = Typography;
@@ -21,6 +26,8 @@ export const SongShow: React.FC<IResourceComponentsProps> = () => {
       <UrlField value={record?.url} />
       <Title level={5}>Position</Title>
       <NumberField value={record?.position ?? ""} />
+      <Title level={5}>Latest</Title>
+      <BooleanField value={record?.latest} />
     </Show>
   );
 };

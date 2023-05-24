@@ -6,14 +6,18 @@ import {
   EditButton,
   DeleteButton,
   ShowButton,
+  BooleanField,
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
 import Link from "next/link";
+import { AntdInferencer } from "@refinedev/inferencer/antd";
 
 export const SongList: React.FC<IResourceComponentsProps> = () => {
   const { tableProps } = useTable({
     syncWithLocation: true,
   });
+
+  // return <AntdInferencer />;
 
   return (
     <List>
@@ -21,6 +25,11 @@ export const SongList: React.FC<IResourceComponentsProps> = () => {
         <Table.Column dataIndex="_id" title="Id" />
         <Table.Column dataIndex="title" title="Title" />
         <Table.Column dataIndex="name" title="Name" />
+        <Table.Column
+          dataIndex={["latest"]}
+          title="Latest"
+          render={(value: any) => <BooleanField value={value} />}
+        />
         <Table.Column
           dataIndex="url"
           title="Url"
