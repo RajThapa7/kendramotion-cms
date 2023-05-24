@@ -1,22 +1,14 @@
-import axios, { AxiosInstance } from "axios";
-
-const axiosInstance: AxiosInstance = axios.create();
+import { axiosInstance } from "@refinedev/simple-rest";
 
 axiosInstance.interceptors.request.use(
   async (config) => {
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoicmFqIHRoYXBhIiwiZW1haWwiOiJyYWpAdGhhcGEuY29tIiwiaWF0IjoxNjg0Njc5NjIxLCJleHAiOjE2ODQ3NjYwMjF9.FdioDdaBDAvm1BVU-KBIZvShCE_UohQ3jKyk7DJw9Uo";
+    const unParsedToken = localStorage.getItem("accessToken");
+    if (unParsedToken) {
+      const token = JSON.parse(unParsedToken);
 
-    if (token && config.headers) {
-      config.headers["Authorization"] = `Bearer ${token}`;
-    }
-    if (
-      config.method === "post" ||
-      config.method === "put" ||
-      config.method === "patch" ||
-      config.method === "delete"
-    ) {
-      config.url = config.url + "/";
+      if (token && config.headers) {
+        config.headers["Authorization"] = `Bearer ${token}`;
+      }
     }
     return config;
   },

@@ -1,3 +1,4 @@
+import "react-toastify/dist/ReactToastify.css";
 import {
   ThemedLayoutV2,
   ThemedSiderV2,
@@ -16,9 +17,11 @@ import { ColorModeContextProvider } from "@contexts";
 import "@refinedev/antd/dist/reset.css";
 import dataProvider from "@refinedev/simple-rest";
 import axiosInstance from "utils/axios";
+import "../src/styles/index.css";
+import { ToastContainer } from "react-toastify";
+import RouteGuard from "layouts/RouteGuard/RouteGuard";
 
-// const API_URL = "https://api.fake-rest.refine.dev";
-const API_URL = "http://localhost:4000/api/v1";
+const API_URL = process.env.NEXT_PUBLIC_BASE_URL as string;
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   noLayout?: boolean;
@@ -46,57 +49,62 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
 
   return (
     <>
-      <RefineKbarProvider>
-        <ColorModeContextProvider>
-          <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL, axiosInstance)}
-            notificationProvider={notificationProvider}
-            options={{
-              syncWithLocation: true,
-              warnWhenUnsavedChanges: true,
-            }}
-            resources={[
-              {
-                name: "movie",
-                list: "/movie",
-                create: "/movie/create",
-                edit: "/movie/edit/:id",
-                show: "/movie/show/:id",
-                meta: {},
-              },
-              {
-                name: "song",
-                list: "/song",
-                create: "/song/create",
-                edit: "/song/edit/:id",
-                show: "/song/show/:id",
-                meta: {},
-              },
-              {
-                name: "artist-profile",
-                list: "/artist-profile",
-                create: "/artist-profile/create",
-                edit: "/artist-profile/edit/:id",
-                show: "/artist-profile/show/:id",
-                meta: {},
-              },
-              {
-                name: "feedback",
-                list: "/feedback",
-                create: "/feedback/create",
-                edit: "/feedback/edit/:id",
-                show: "/feedback/show/:id",
-                meta: {},
-              },
-            ]}
-          >
-            {renderComponent()}
-            <RefineKbar />
-            <UnsavedChangesNotifier />
-          </Refine>
-        </ColorModeContextProvider>
-      </RefineKbarProvider>
+      <RouteGuard>
+        <RefineKbarProvider>
+          <ColorModeContextProvider>
+            <Refine
+              routerProvider={routerProvider}
+              dataProvider={dataProvider(API_URL, axiosInstance)}
+              notificationProvider={notificationProvider}
+              options={{
+                syncWithLocation: true,
+                warnWhenUnsavedChanges: true,
+              }}
+              resources={[
+                {
+                  name: "movie",
+                  list: "/movie",
+                  create: "/movie/create",
+                  edit: "/movie/edit/:id",
+                  show: "/movie/show/:id",
+                  meta: {},
+                },
+                {
+                  name: "song",
+                  list: "/song",
+                  create: "/song/create",
+                  edit: "/song/edit/:id",
+                  show: "/song/show/:id",
+                  meta: {},
+                },
+                {
+                  name: "artist-profile",
+                  list: "/artist-profile",
+                  create: "/artist-profile/create",
+                  edit: "/artist-profile/edit/:id",
+                  show: "/artist-profile/show/:id",
+                  meta: {},
+                },
+                {
+                  name: "feedback",
+                  list: "/feedback",
+                  create: "/feedback/create",
+                  edit: "/feedback/edit/:id",
+                  show: "/feedback/show/:id",
+                  meta: {},
+                },
+              ]}
+            >
+              <ToastContainer />
+
+              {renderComponent()}
+
+              <RefineKbar />
+              <UnsavedChangesNotifier />
+            </Refine>
+          </ColorModeContextProvider>
+        </RefineKbarProvider>
+      </RouteGuard>
     </>
   );
 }

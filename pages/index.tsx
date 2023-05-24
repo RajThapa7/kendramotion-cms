@@ -1,7 +1,10 @@
-import { WelcomePage } from "@refinedev/core";
-
+import { NavigateToResource } from "@refinedev/nextjs-router/pages";
 export default function Index() {
-  return <WelcomePage />;
+  return (
+    <>
+      <NavigateToResource resource="movie" />
+    </>
+  );
 }
 
 Index.noLayout = true;

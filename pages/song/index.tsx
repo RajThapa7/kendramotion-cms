@@ -8,13 +8,12 @@ import {
   ShowButton,
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
+import Link from "next/link";
 
 export const SongList: React.FC<IResourceComponentsProps> = () => {
   const { tableProps } = useTable({
     syncWithLocation: true,
   });
-
-  console.log(tableProps, "table props");
 
   return (
     <List>
@@ -22,7 +21,15 @@ export const SongList: React.FC<IResourceComponentsProps> = () => {
         <Table.Column dataIndex="_id" title="Id" />
         <Table.Column dataIndex="title" title="Title" />
         <Table.Column dataIndex="name" title="Name" />
-        <Table.Column dataIndex="url" title="Url" />
+        <Table.Column
+          dataIndex="url"
+          title="Url"
+          render={(item) => (
+            <Link href={item} target="_blank">
+              {item}
+            </Link>
+          )}
+        />
         <Table.Column dataIndex="position" title="Position" />
         <Table.Column
           title="Actions"
