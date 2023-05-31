@@ -21,6 +21,8 @@ import "../src/styles/index.css";
 import { ToastContainer } from "react-toastify";
 import RouteGuard from "layouts/RouteGuard/RouteGuard";
 import { Typography } from "antd";
+import Image from "next/image";
+import kendra from "../src/kendra.png";
 
 const API_URL = process.env.NEXT_PUBLIC_BASE_URL as string;
 
@@ -46,7 +48,11 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
         Sider={() => (
           <ThemedSiderV2
             fixed
-            Title={() => <Title level={5}>Kendramotion</Title>}
+            Title={() => (
+              <Title level={5}>
+                <Image src={kendra} width={30} alt="logo" />
+              </Title>
+            )}
           />
         )}
       >
@@ -121,6 +127,13 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
                   list: "/banner",
                   edit: "/banner/edit/:id",
                   create: "/banner/create",
+                },
+                {
+                  name: "submission",
+                  list: "/submission",
+                  create: "/submission/create",
+                  edit: "/submission/edit/:id",
+                  show: "/submission/show/:id",
                 },
               ]}
             >
