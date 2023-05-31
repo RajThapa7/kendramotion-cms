@@ -116,6 +116,11 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
                   edit: "/member/edit/:id",
                   show: "/member/show/:id",
                 },
+                {
+                  name: "banner",
+                  list: "/banner",
+                  create: "/banner/create",
+                },
               ]}
             >
               <ToastContainer />
