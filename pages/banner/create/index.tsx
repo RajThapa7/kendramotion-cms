@@ -1,6 +1,6 @@
 import { useApiUrl } from "@refinedev/core";
 import { Create, useForm } from "@refinedev/antd";
-import { Upload, Form, Input } from "antd";
+import { Upload, Form, Input, Checkbox } from "antd";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -61,6 +61,9 @@ const BannerCreate: React.FC = () => {
           ]}
         >
           <Input />
+        </Form.Item>
+        <Form.Item label="Roadblock" valuePropName="checked" name={["latest"]}>
+          <Checkbox />
         </Form.Item>
         <Form.Item label="Image">
           <Form.Item

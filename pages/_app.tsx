@@ -119,6 +119,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
                 {
                   name: "banner",
                   list: "/banner",
+                  edit: "/banner/edit/:id",
                   create: "/banner/create",
                 },
               ]}
