@@ -7,6 +7,7 @@ import {
   ShowButton,
   DeleteButton,
   TagField,
+  BooleanField,
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
 import Link from "next/link";
@@ -23,6 +24,11 @@ export const MovieList: React.FC<IResourceComponentsProps> = () => {
         <Table.Column dataIndex="_id" title="Id" />
         <Table.Column dataIndex="title" title="Title" />
         <Table.Column dataIndex="name" title="Name" />
+        <Table.Column
+          dataIndex={["latest"]}
+          title="Latest"
+          render={(value: any) => <BooleanField value={value} />}
+        />
         <Table.Column
           dataIndex="url"
           title="Url"

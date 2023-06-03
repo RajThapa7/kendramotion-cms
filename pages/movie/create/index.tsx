@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { IResourceComponentsProps, useMany } from "@refinedev/core";
 import { Create, useForm } from "@refinedev/antd";
-import { Form, Image, Input, Select, Skeleton, Space } from "antd";
+import { Checkbox, Form, Image, Input, Select, Skeleton, Space } from "antd";
 
 type Artist = {
   _id: string;
@@ -57,7 +57,11 @@ export const MovieCreate: React.FC<IResourceComponentsProps> = () => {
         >
           <Input />
         </Form.Item>
-        <Form.Item label="URL" name={["url"]} rules={[{ required: true }]}>
+        <Form.Item
+          label="Image URL"
+          name={["url"]}
+          rules={[{ required: true }]}
+        >
           <Input onChange={(e) => setUrl(e.target.value)} />
         </Form.Item>
 
@@ -113,6 +117,9 @@ export const MovieCreate: React.FC<IResourceComponentsProps> = () => {
               </Select.Option>
             ))}
           </Select>
+        </Form.Item>
+        <Form.Item label="Latest" valuePropName="checked" name={["latest"]}>
+          <Checkbox>Latest</Checkbox>
         </Form.Item>
       </Form>
     </Create>

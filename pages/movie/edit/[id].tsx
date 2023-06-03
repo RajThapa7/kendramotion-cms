@@ -1,6 +1,6 @@
 import { IResourceComponentsProps, useMany } from "@refinedev/core";
 import { Edit, useForm } from "@refinedev/antd";
-import { Form, Input, Select, Space } from "antd";
+import { Checkbox, Form, Input, Select, Space } from "antd";
 
 export const MovieEdit: React.FC<IResourceComponentsProps> = () => {
   const { formProps, saveButtonProps } = useForm();
@@ -80,6 +80,9 @@ export const MovieEdit: React.FC<IResourceComponentsProps> = () => {
               </Select.Option>
             ))}
           </Select>
+        </Form.Item>
+        <Form.Item label="Latest" valuePropName="checked" name={["latest"]}>
+          <Checkbox>Latest</Checkbox>
         </Form.Item>
       </Form>
     </Edit>

@@ -26,11 +26,6 @@ export const SongList: React.FC<IResourceComponentsProps> = () => {
         <Table.Column dataIndex="title" title="Title" />
         <Table.Column dataIndex="name" title="Name" />
         <Table.Column
-          dataIndex={["latest"]}
-          title="Latest"
-          render={(value: any) => <BooleanField value={value} />}
-        />
-        <Table.Column
           dataIndex="url"
           title="Url"
           render={(item) => (

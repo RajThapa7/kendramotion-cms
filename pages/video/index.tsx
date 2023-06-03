@@ -10,7 +10,6 @@ import {
   DeleteButton,
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
-import { AntdInferencer } from "@refinedev/inferencer/antd";
 
 const VideoList: React.FC<IResourceComponentsProps> = () => {
   const { tableProps } = useTable({
@@ -19,7 +18,7 @@ const VideoList: React.FC<IResourceComponentsProps> = () => {
 
   return (
     <List>
-      <Table {...tableProps} rowKey="id">
+      <Table {...tableProps} rowKey="id" pagination={{ total: 500 }}>
         <Table.Column dataIndex="title" title="Title" />
         <Table.Column dataIndex="name" title="Name" />
         <Table.Column

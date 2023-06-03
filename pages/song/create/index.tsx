@@ -64,9 +64,6 @@ export const SongCreate: React.FC<IResourceComponentsProps> = () => {
         >
           <Input />
         </Form.Item>
-        <Form.Item label="Latest" valuePropName="checked" name={["latest"]}>
-          <Checkbox>Latest</Checkbox>
-        </Form.Item>
       </Form>
     </Create>
   );
