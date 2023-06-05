@@ -11,7 +11,6 @@ import {
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
 import Link from "next/link";
-import { AntdInferencer } from "@refinedev/inferencer/antd";
 
 export const MovieList: React.FC<IResourceComponentsProps> = () => {
   const { tableProps } = useTable({

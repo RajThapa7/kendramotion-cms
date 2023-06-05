@@ -8,7 +8,7 @@ import {
   BooleanField,
   EditButton,
 } from "@refinedev/antd";
-import { Table, Space, Checkbox } from "antd";
+import { Table, Space } from "antd";
 
 const BannerList: React.FC<IResourceComponentsProps> = () => {
   const { tableProps } = useTable({

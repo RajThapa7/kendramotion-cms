@@ -18,7 +18,7 @@ const VideoList: React.FC<IResourceComponentsProps> = () => {
 
   return (
     <List>
-      <Table {...tableProps} rowKey="id" pagination={{ total: 500 }}>
+      <Table {...tableProps} rowKey="_id" dataSource={tableProps.dataSource}>
         <Table.Column dataIndex="title" title="Title" />
         <Table.Column dataIndex="name" title="Name" />
         <Table.Column
