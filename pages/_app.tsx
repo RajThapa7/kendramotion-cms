@@ -24,7 +24,8 @@ import { Typography } from "antd";
 import Image from "next/image";
 import kendra from "../src/kendra.png";
 
-const API_URL = process.env.NEXT_PUBLIC_BASE_URL as string;
+// const API_URL = process.env.NEXT_PUBLIC_BASE_URL as string;
+const API_URL = "https://kendramotion-backend.onrender.com/api/v1";
 
 const { Title } = Typography;
 

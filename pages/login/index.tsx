@@ -7,7 +7,8 @@ import kendra from "../../src/kendra.png";
 import Image from "next/image";
 
 const LoginIndex = () => {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  // const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const baseUrl = "https://kendramotion-backend.onrender.com/api/v1";
   const [passwordType, setPasswordType] = useState("password");
 
   const [formData, setFormData] = useState({
