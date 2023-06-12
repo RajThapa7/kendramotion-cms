@@ -1,6 +1,5 @@
 import { Col, Row } from "antd";
 import { useCallback, useState } from "react";
-import { baseURl } from "constants/index";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
@@ -8,6 +7,7 @@ import kendra from "../../src/kendra.png";
 import Image from "next/image";
 
 const LoginIndex = () => {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const [passwordType, setPasswordType] = useState("password");
 
   const [formData, setFormData] = useState({
@@ -28,7 +28,7 @@ const LoginIndex = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     await axios
-      .post(`${baseURl}/login`, formData)
+      .post(`${baseUrl}/login`, formData)
       .then((res) => {
         localStorage.setItem(
           "accessToken",
