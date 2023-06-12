@@ -6,6 +6,7 @@ import {
   EditButton,
   ShowButton,
   DeleteButton,
+  ImageField,
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
 
@@ -19,7 +20,20 @@ export const ArtistProfileList: React.FC<IResourceComponentsProps> = () => {
       <Table {...tableProps} rowKey="_id">
         <Table.Column dataIndex="_id" title="Id" />
         <Table.Column dataIndex="name" title="Name" />
-        <Table.Column dataIndex="profileImage" title="Profile Image" />
+        <Table.Column
+          dataIndex={["profileImage"]}
+          title="Profile"
+          render={(value: any) => (
+            <ImageField
+              style={{
+                maxWidth: "60px",
+                height: "60px",
+                borderRadius: "100%",
+              }}
+              value={value}
+            />
+          )}
+        />
         <Table.Column dataIndex="designation" title="Designation" />
         <Table.Column dataIndex="position" title="Position" />
         <Table.Column
