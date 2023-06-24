@@ -8,6 +8,7 @@ import {
   DeleteButton,
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
+import { AntdInferencer } from "@refinedev/inferencer/antd";
 
 export const SubmissionList: React.FC<IResourceComponentsProps> = () => {
   const { tableProps } = useTable({
@@ -24,7 +25,7 @@ export const SubmissionList: React.FC<IResourceComponentsProps> = () => {
           title="Email"
           render={(value: any) => <EmailField value={value} />}
         />
-        <Table.Column dataIndex="videoUrl" title="Video Url" />
+        <Table.Column dataIndex={["video", "url"]} title="Video Url" />
         <Table.Column
           title="Actions"
           dataIndex="actions"

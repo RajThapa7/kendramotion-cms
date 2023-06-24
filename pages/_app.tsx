@@ -24,7 +24,7 @@ import { Typography } from "antd";
 import Image from "next/image";
 import kendra from "../src/kendra.png";
 
-const API_URL = process.env.NEXT_PUBLIC_BASE_URL as string;
+export const API_URL = process.env.NEXT_PUBLIC_BASE_URL as string;
 
 const { Title } = Typography;
 
@@ -131,7 +131,6 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
                 {
                   name: "submission",
                   list: "/submission",
-                  create: "/submission/create",
                   edit: "/submission/edit/:id",
                   show: "/submission/show/:id",
                 },
