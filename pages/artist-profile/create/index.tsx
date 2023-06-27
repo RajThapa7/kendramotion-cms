@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { IResourceComponentsProps, useApiUrl } from "@refinedev/core";
 import { Create, useForm } from "@refinedev/antd";
-import { Form, Input, Upload } from "antd";
+import { Form, Input, message, Upload } from "antd";
 import { toast } from "react-toastify";
+import { handleFileRemove } from "utils/handleFileRemove";
 
 export const ArtistProfileCreate: React.FC<IResourceComponentsProps> = () => {
   const { formProps, saveButtonProps } = useForm();
@@ -40,12 +41,6 @@ export const ArtistProfileCreate: React.FC<IResourceComponentsProps> = () => {
       name: file.name,
     };
     return upload;
-  };
-
-  const [uploaded, setUploaded] = useState<boolean>(false);
-
-  const renderFileList = () => {
-    return <div>File uploaded successfully</div>;
   };
 
   return (
@@ -96,22 +91,19 @@ export const ArtistProfileCreate: React.FC<IResourceComponentsProps> = () => {
               action={`${apiUrl}/artist-profile/upload`}
               headers={getHeaders()}
               listType="picture"
-              showUploadList={false}
               multiple={false}
+              onRemove={handleFileRemove}
               onChange={(info) => {
                 const { status } = info.file;
                 if (status === "done") {
-                  toast.success("File uploaded successfully");
-                  setUploaded(true);
+                  message.success("File uploaded successfully");
                 } else if (status === "error") {
-                  toast.error("File upload failed");
-                  setUploaded(false);
+                  message.error("File upload failed");
                 }
               }}
             >
               <p className="ant-upload-text">Drag & drop a file in this area</p>
             </Upload.Dragger>
-            {uploaded && renderFileList()}
           </Form.Item>
         </Form.Item>
       </Form>

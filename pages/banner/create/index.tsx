@@ -1,8 +1,8 @@
 import { useApiUrl } from "@refinedev/core";
 import { Create, useForm } from "@refinedev/antd";
-import { Upload, Form, Input, Checkbox } from "antd";
+import { Upload, Form, Input, Checkbox, message } from "antd";
 import { useEffect, useRef, useState } from "react";
-import { toast } from "react-toastify";
+import { handleFileRemove } from "utils/handleFileRemove";
 
 const BannerCreate: React.FC = () => {
   const { formProps, saveButtonProps } = useForm<IPost>();
@@ -42,12 +42,6 @@ const BannerCreate: React.FC = () => {
     return upload;
   };
 
-  const [uploaded, setUploaded] = useState<boolean>(false);
-
-  const renderFileList = () => {
-    return <div>File uploaded successfully</div>;
-  };
-
   return (
     <Create saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
@@ -77,22 +71,19 @@ const BannerCreate: React.FC = () => {
               action={`${apiUrl}/banner/upload`}
               headers={getHeaders()}
               listType="picture"
-              showUploadList={false}
               multiple={false}
+              onRemove={handleFileRemove}
               onChange={(info) => {
                 const { status } = info.file;
                 if (status === "done") {
-                  toast.success("File uploaded successfully");
-                  setUploaded(true);
+                  message.success("File uploaded successfully");
                 } else if (status === "error") {
-                  toast.error("File upload failed");
-                  setUploaded(false);
+                  message.error("File upload failed");
                 }
               }}
             >
               <p className="ant-upload-text">Drag & drop a file in this area</p>
             </Upload.Dragger>
-            {uploaded && renderFileList()}
           </Form.Item>
         </Form.Item>
       </Form>
